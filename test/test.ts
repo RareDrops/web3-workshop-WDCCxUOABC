@@ -48,4 +48,44 @@ describe("GuessAndWin", function () {
 
         expect(await contract.getPot()).to.equal(depositAmount * 2n);
     });
+
+    it("Should prevent a player from guessing above the maximum number", async function () {
+        await expect(
+            contract.connect(player1).depositAndGuess(300, { value: depositAmount })
+        ).to.be.revertedWith("Guess must be within range");
+    });
+
+    it("Should allow only the owner to withdraw funds if the game is active", async function () {
+        await contract.connect(player1).depositAndGuess(10, { value: depositAmount });
+
+        await expect(contract.connect(owner).withdrawFunds())
+            .to.emit(contract, "FundsWithdrawn")
+            .withArgs(owner.address, depositAmount);
+
+        expect(await ethers.provider.getBalance(await contract.getAddress())).to.equal(0);
+    });
+
+    it("Should prevent non-owners from withdrawing funds", async function () {
+        await contract.connect(player1).depositAndGuess(10, { value: depositAmount });
+
+        await expect(contract.connect(player1).withdrawFunds()).to.be.revertedWith("Not the owner");
+    });
+
+    it("Should prevent owner from withdrawing after a winner is declared", async function () {
+        await contract.connect(player1).depositAndGuess(secretNumber, { value: depositAmount });
+
+        await expect(contract.connect(owner).withdrawFunds()).to.be.revertedWith(
+            "Game already has a winner, cannot withdraw"
+        );
+    });
+
+    it("Should prevent a player from guessing outside the allowed range", async function () {
+        await expect(
+            contract.connect(player1).depositAndGuess(0, { value: depositAmount }) // Edge case: min number
+        ).to.not.be.reverted; 
+    
+        await expect(
+            contract.connect(player1).depositAndGuess(257, { value: depositAmount }) // Above maxNumber (256)
+        ).to.be.revertedWith("Guess must be within range");
+    });
 });

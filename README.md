@@ -71,8 +71,8 @@ When using Hardhat, it is best to deploy contracts through a script. To interact
 To securely store these details, create a `.env` file in the root directory and initialise the variables:
 
 ```bash
-RPC_URL="<RPC_URL_HERE>"
-PRIVATE_KEY="<PRIVATE_KEY_HERE>"
+SEPOLIA_RPC_URL = <RPC_URL_HERE>
+PRIVATE_KEY = <PRIVATE_KEY_HERE>
 ```
 
 **Note:** Your private key and RPC URL are sensitive details and should NEVER be shared with anyone.
@@ -101,10 +101,37 @@ Run the deployment script:
 $ npx hardhat ignition deploy ./ignition/modules/deploy.ts --network sepolia
 ```
 
-Once deployed, your contract should now be live on Ethereum Sepolia! You can verify it on [Etherscan Sepolia](https://sepolia.etherscan.io/) using the deployed contract address.
+Once deployed your contract should be live on Ethereum Sepolia, well done! You can view it on [Etherscan Sepolia](https://sepolia.etherscan.io/) using the deployed contract address.
 
 ## Interacting with the contract using Etherscan
 
+Since we don't have a front-end that allows us to interact with the deployed smart contract yet, one way to interact with the contract is through Sepolia Etherscan.
+
+**Note:** Etherscan and Sepolia Etherscan are seperate. One is for mainnet (real money) and the other is for Sepolia test network (fake money).
+
+### 1. Get a Sepolia Etherscan api key
+
+[Login/Signup](https://etherscan.io/login) on Etherscan.
+
+Once logged in, head to API Dashboard and "add" an API key. Add this into your `.env` file.
+
+Your `.env` file should look like the following:
+
+```bash
+SEPOLIA_RPC_URL = <RPC_URL_HERE>
+PRIVATE_KEY = <PRIVATE_KEY_HERE>
+ETHERSCAN_API_KEY = <API_KEY_HERE>
+```
+
+### 2. Verify your contract
+
+Run this deploy command in cmd:
+
+```bash
+$ npx hardhat ignition deploy ./ignition/modules/deploy.ts --network sepolia --verify
+```
+
+**Note:** Notice that we have simply added the `--verify` flag at the end of the deploy command.
 
 ## Conclusion
 
