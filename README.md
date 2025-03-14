@@ -113,7 +113,7 @@ Since we don't have a front-end that allows us to interact with the deployed sma
 
 [Login/Signup](https://etherscan.io/login) on Etherscan.
 
-Once logged in, head to API Dashboard and "add" an API key. Add this into your `.env` file.
+Once logged in, head to API Dashboard and "add" an API key. Add this into your `.env` file. (Watch workshop video for demonstration)
 
 Your `.env` file should look like the following:
 
@@ -133,13 +133,22 @@ $ npx hardhat ignition deploy ./ignition/modules/deploy.ts --network sepolia --v
 
 **Note:** Notice that we have simply added the `--verify` flag at the end of the deploy command.
 
+### 3. Interact with the contract
+
+search for your verified contract on [Sepolia Etherscan](https://sepolia.etherscan.io/). It should now have a green tick on the `contract` tab, indicating successful verification!
+
+![alt text](image.png)
+
+As shown above, after `clicking` on the contract tab you will be greeted with 3 sub menus. You can look into `Read Contract` and `Write Contract` for now as they allow for easy interaction with your smart contract.
+
+Watch the workshop video for a demonstration on how this information and menu can be used.
+
 ## Conclusion
 
-If you’ve followed these steps, you have successfully initialized, deployed, and interacted with a smart contract on Ethereum Sepolia. Well done! You can expand on this or start your own project using what you have learned so far.
+If you’ve followed these steps, you have successfully initialised, deployed, and interacted with a smart contract on Ethereum Sepolia. Well done! You can expand on this or start your own project using what you have learned so far.
 
 *Feel free to ask questions to mentors or fellow hackers! This is a lot to take on at once, so take it step by step!*
 
 ## Notes:
-- Smart contracts can also be written in languages like C++, Rust, or Vyper.
-- This guide does not cover verifying smart contracts. You can follow this guide for Hardhat: [Verifying Contracts](https://hardhat.org/hardhat-runner/docs/guides/verifying).
+- Smart contracts can also be written in languages like C++, Rust, or Vyper which are on the niche side for EVM development. Currently Solidity has good backing and support.
 
