@@ -2,7 +2,9 @@
 
 Welcome to the **Web3 Hackathon Hardhat Quick Start Guide**! This repository serves as a template to get you up and running with Hardhat for the Web3 hackathon. It provides all the tools you'll need to build, test, and deploy your Ethereum-based smart contracts. 💻🛠️
 
-In this repository, you'll find a simple smart contract that pays out test ETH to people who guess the correct number. Perfect for demonstrating how smart contracts can interact with users and handle basic payouts in a decentralized environment. 💸
+In this repository, you'll find a simple smart contract that pays out ETH to the person who guess the correct number. Perfect for demonstrating how smart contracts can interact with users and handle basic payouts in a decentralized environment. 💸
+
+**Before we get into it, this workshop is intended to lead into the workshop: "From Zero to dApp: Your First Blockchain Application". It is highly recommended to attend the workshop to maximise your teams chance at success!**
 
 ## What is Hardhat? 🧐
 
@@ -148,6 +150,10 @@ Watch the workshop video for a demonstration on how this information and menu ca
 If you’ve followed these steps, you have successfully initialised, deployed, and interacted with a smart contract on Ethereum Sepolia. Well done! You can expand on this or start your own project using what you have learned so far.
 
 *Feel free to ask questions to mentors or fellow hackers during the hackathon! This is one of the best places to learn so take it step by step.*
+
+## Reminder
+
+**This workshop is intended to lead into the workshop: "From Zero to dApp: Your First Blockchain Application". It is highly recommended to attend the workshop to maximise your teams chance at success!**
 
 ## Notes:
 - Smart contracts can also be written in languages like C++, Rust, or Vyper which are on the niche side for EVM development. Currently Solidity has good backing and support.
