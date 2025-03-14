@@ -147,7 +147,7 @@ Watch the workshop video for a demonstration on how this information and menu ca
 
 If you’ve followed these steps, you have successfully initialised, deployed, and interacted with a smart contract on Ethereum Sepolia. Well done! You can expand on this or start your own project using what you have learned so far.
 
-*Feel free to ask questions to mentors or fellow hackers! This is a lot to take on at once, so take it step by step!*
+*Feel free to ask questions to mentors or fellow hackers during the hackathon! This is one of the best places to learn so take it step by step.*
 
 ## Notes:
 - Smart contracts can also be written in languages like C++, Rust, or Vyper which are on the niche side for EVM development. Currently Solidity has good backing and support.
