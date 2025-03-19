@@ -27,11 +27,7 @@ This repository contains:
 
 ### 1. Install Node.js and Hardhat ⚖️
 
-Make sure you have [Node.js](https://nodejs.org/) installed, then install Hardhat:
-
-```bash
-$ npm install --save-dev hardhat
-```
+Make sure you have [Node.js](https://nodejs.org/) installed.
 
 ### 2. Clone This Repository 💽
 
@@ -83,15 +79,19 @@ PRIVATE_KEY = <PRIVATE_KEY_HERE>
 
 If you don't have a MetaMask wallet, follow this guide: [Setting up MetaMask](https://support.metamask.io/start/getting-started-with-metamask/).
 
-Find your **private key** in MetaMask under account details and add it to `.env`. (Watch workshop video for instructions)
+Find your **private key** in MetaMask under account details and add it to `.env`.
+
+**Watch workshop video for instructions**
 
 ![alt text](images/image-2.png)
 
 ### 2. Get an RPC URL for Ethereum Sepolia
 
-Set up an [Alchemy](https://dashboard.alchemy.com/) or [Infura](https://www.infura.io/) app (configured as Eth Sepolia) and copy the network URL. Add it to `.env`. (Watch workshop video for instructions)
+Set up an [Alchemy](https://dashboard.alchemy.com/) or [Infura](https://www.infura.io/) app (configured as Eth Sepolia) and copy the network URL. Add it to `.env`.
 
-![alt text](images/image-4.png)
+**Watch workshop video for instructions**
+
+![alt text](images/image-3.png)
 
 Now you should have the details needed to deploy!
 
@@ -125,7 +125,7 @@ PRIVATE_KEY = <PRIVATE_KEY_HERE>
 ETHERSCAN_API_KEY = <API_KEY_HERE>
 ```
 
-### 2. Verify your contract
+### 2. Deploy and verify your contract
 
 Run this deploy command in cmd:
 
@@ -149,12 +149,12 @@ Watch the workshop video for a demonstration on how this information and menu ca
 
 If you’ve followed these steps, you have successfully initialised, deployed, and interacted with a smart contract on Ethereum Sepolia. Well done! You can expand on this or start your own project using what you have learned so far.
 
-*Feel free to ask questions to mentors or fellow hackers during the hackathon! This is one of the best places to learn so take it step by step.*
+_Feel free to ask questions to mentors or fellow hackers during the hackathon! This is one of the best places to learn so take it step by step._
 
 ## Reminder
 
 **This workshop is intended to lead into the workshop: "From Zero to dApp: Your First Blockchain Application". It is highly recommended to attend the workshop to maximise your teams chance at success!**
 
 ## Notes:
-- Smart contracts can also be written in languages like C++, Rust, or Vyper which are on the niche side for EVM development. Currently Solidity has good backing and support.
 
+- Smart contracts can also be written in languages like C++, Rust, or Vyper which are on the niche side for EVM development. Currently Solidity has good backing and support.
