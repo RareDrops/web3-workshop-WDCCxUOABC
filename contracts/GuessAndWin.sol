@@ -3,27 +3,23 @@ pragma solidity ^0.8.20;
 
 contract GuessAndWin {
     uint256 private secretNumber;
-    address public winner;
-    bool public gameActive = true;
-    uint256 public balance;
-    uint256 public totalPot;
     uint256 public maxNumber = 256;
     uint256 public minNumber = 0;
     address public owner;
+    uint256 public prizeAmount = 0.1 ether;  // Prize amount set to 0.1 ETH
 
-    mapping(address => uint256) public contributions;
+    mapping (address => bool) public winners;
 
     event GuessMade(address indexed player, uint256 guess);
-    event WinnerDeclared(address indexed winner, uint256 prize);
-    event FundsWithdrawn(address indexed owner, uint256 amount);
+    event WinnerDeclared(address indexed winner);
+    event PrizeClaimed(address indexed winner, uint256 amount);
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Not the owner");
         _;
     }
 
-    // Store the secret number and set the contract owner
-    constructor(uint256 _secretNumber) {
+    constructor(uint256 _secretNumber) payable {
         require(
             _secretNumber >= minNumber && _secretNumber <= maxNumber,
             "Secret number must be within range"
@@ -32,45 +28,44 @@ contract GuessAndWin {
         owner = msg.sender;
     }
 
-    // Players deposit ETH and make a guess
-    function depositAndGuess(uint256 _guess) external payable {
-        require(gameActive, "Game has ended!");
-        require(msg.value >= 0.01 ether, "Minimum deposit: 0.01 ETH");
+    function setSecretNumber(uint256 _secretNumber) external onlyOwner {
+        require(
+            _secretNumber >= minNumber && _secretNumber <= maxNumber,
+            "Secret number must be within range"
+        );
+        secretNumber = _secretNumber;
+    }
+
+    function setPrizeAmount(uint256 _prizeAmount) external onlyOwner {
+        prizeAmount = _prizeAmount;
+    }
+
+    function withdraw() external onlyOwner {
+        payable(owner).transfer(address(this).balance);
+    }
+
+    function makeGuess(uint256 _guess) external {
+
+        require(winners[msg.sender] == false, "You have already won");
+
         require(
             _guess >= minNumber && _guess <= maxNumber,
             "Guess must be within range"
         );
 
-        contributions[msg.sender] += msg.value;
         emit GuessMade(msg.sender, _guess);
 
-        // Check if the guess is correct
         if (_guess == secretNumber) {
-            winner = msg.sender;
-            gameActive = false;
 
-            balance = address(this).balance;
-            require(balance > 0, "No funds to transfer");
+            winners[msg.sender] = true;
 
-            emit WinnerDeclared(winner, balance);
-
-            // Transfer the balance to the winner's wallet
-            payable(winner).transfer(balance);
+            // Transfer the prize amount (0.1 ETH) to the winner
+            payable(msg.sender).transfer(prizeAmount);
+            emit WinnerDeclared(msg.sender);
+            emit PrizeClaimed(msg.sender, prizeAmount);
         }
     }
 
-    // Get the current pot amount
-    function getPot() external view returns (uint256) {
-        return address(this).balance;
-    }
-
-    // Owner can withdraw remaining funds if no winner is declared
-    function withdrawFunds() external onlyOwner {
-        require(gameActive, "Game already has a winner, cannot withdraw");
-        uint256 amount = address(this).balance;
-        require(amount > 0, "No funds to withdraw");
-
-        emit FundsWithdrawn(owner, amount);
-        payable(owner).transfer(amount);
-    }
+    // Allow the contract to accept ETH
+    receive() external payable {}
 }
