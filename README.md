@@ -91,8 +91,6 @@ Set up an [Alchemy](https://dashboard.alchemy.com/) or [Infura](https://www.infu
 
 **Watch workshop video for instructions**
 
-![alt text](images/image-3.png)
-
 Now you should have the details needed to deploy!
 
 ### 3. Deploy the Contract
