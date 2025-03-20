@@ -28,14 +28,6 @@ contract GuessAndWin {
         owner = msg.sender;
     }
 
-    function setSecretNumber(uint256 _secretNumber) external onlyOwner {
-        require(
-            _secretNumber >= minNumber && _secretNumber <= maxNumber,
-            "Secret number must be within range"
-        );
-        secretNumber = _secretNumber;
-    }
-
     function setPrizeAmount(uint256 _prizeAmount) external onlyOwner {
         prizeAmount = _prizeAmount;
     }
