@@ -1,5 +1,7 @@
 # Web3 Hackathon Hardhat Quick Start! 🚀
 
+Forked
+
 Welcome to the **Web3 Hackathon Hardhat Quick Start Guide**! This repository serves as a template to get you up and running with Hardhat for the Web3 hackathon. It provides all the tools you'll need to build, test, and deploy your Ethereum-based smart contracts. 💻🛠️
 
 In this repository, you'll find a simple smart contract that pays out ETH to the person who guess the correct number. Perfect for demonstrating how smart contracts can interact with users and handle basic payouts in a decentralized environment. 💸
