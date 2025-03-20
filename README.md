@@ -151,6 +151,8 @@ If you’ve followed these steps, you have successfully initialised, deployed, a
 
 _Feel free to ask questions to mentors or fellow hackers during the hackathon! This is one of the best places to learn so take it step by step._
 
+Grab some eth here: [Guess and win](https://sepolia.etherscan.io/address/0xEfDF858DA0Ad1231248b90c44C33534f484CFF81#writeContract) (If there's any left)
+
 ## Reminder
 
 **This workshop is intended to lead into the workshop: "From Zero to dApp: Your First Blockchain Application". It is highly recommended to attend the workshop to maximise your teams chance at success!**
