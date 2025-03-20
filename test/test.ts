@@ -11,22 +11,33 @@ describe("GuessAndWin", function () {
     [owner, player1, player2] = await ethers.getSigners();
 
     const GuessAndWin = await ethers.getContractFactory("GuessAndWin");
-    contract = (await GuessAndWin.deploy(secretNumber)) as GuessAndWin;
+    contract = (await GuessAndWin.deploy(secretNumber, {
+      value: ethers.parseEther("1"),
+    })) as GuessAndWin;
     await contract.waitForDeployment();
   });
 
   it("Should allow a player to make a guess", async function () {
-    await contract.connect(player1).makeGuess(10);
+    await expect(contract.connect(player1).makeGuess(10))
+      .to.emit(contract, "GuessMade")
+      .withArgs(player1.address, 10);
   });
 
-  it("Should allow a player to make a guess and win", async function () {
-    await contract.connect(player1).makeGuess(secretNumber);
+  it("Should change address to win true and send 0.1 eth", async function () {
+    const prizeAmount = ethers.parseEther("0.1");
+
+    await expect(contract.connect(player1).makeGuess(secretNumber))
+      .to.emit(contract, "PrizeClaimed")
+      .withArgs(player1.address, prizeAmount);
+
+    expect(await contract.winners(player1.address)).to.equal(true);
   });
 
-  it("Should not allow a player to make a guess after winning", async function () {
+  it("Should not allow a player to make a guess if they have already won", async function () {
     await contract.connect(player1).makeGuess(secretNumber);
-    await expect(
-      contract.connect(player1).makeGuess(secretNumber)
-    ).to.be.revertedWith("You have already won");
+
+    await expect(contract.connect(player1).makeGuess(10)).to.be.revertedWith(
+      "You have already won"
+    );
   });
 });
